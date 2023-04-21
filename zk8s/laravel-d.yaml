@@ -1,0 +1,76 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: laravel-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: laravel-app
+  template:
+    metadata:
+      labels:
+        app: laravel-app
+    spec:
+      initContainers:
+      containers:
+      # - name: webserver
+      #   image: nginx:latest
+      #   ports:
+      #   - containerPort: 80
+      #   volumeMounts:
+      #     - name: nginx-conf
+      #       mountPath: /etc/nginx/nginx.conf
+      #       subPath: nginx.conf
+      #     - mountPath: /var/log/nginx
+      #       name: log
+      - name: laravel-app
+        image: gcr.io/valued-range-382821/laravel-k8s:latest
+        ports:
+        - containerPort: 9000
+        - containerPort: 80
+        volumeMounts:
+        # - name: logs
+        #   mountPath: /var/www/storage/logs
+        # - name: cache
+        #   mountPath: /var/www/storage/framework/cache
+        # - name: sessions
+        #   mountPath: /var/www/storage/framework/sessions
+        # - name: views
+        #   mountPath: /var/www/storage/framework/views
+        # - name: testing
+        #   mountPath: /var/www/storage/framework/testing
+      - name: db
+        image: mysql:5.7
+        ports:
+        - containerPort: 3306
+        # volumeMounts:
+        # - name: mysql-data
+        #   mountPath: /var/lib/mysql
+        env:
+          - name: MYSQL_DATABASE
+            value: laravel_db
+          - name: MYSQL_USER
+            value: laravel_user
+          - name: MYSQL_PASSWORD
+            value: password
+          - name: MYSQL_ROOT_PASSWORD
+            value: password
+      volumes: 
+      - name: nginx-conf
+        configMap:
+          name: nginx-config
+      # - name: mysql-data
+      #   emptyDir: {}
+      - name: log
+        emptyDir: {}
+      # - name: logs
+      #   emptyDir: {}
+      # - name: cache
+      #   emptyDir: {}
+      # - name: sessions
+      #   emptyDir: {}
+      # - name: views
+      #   emptyDir: {}
+      # - name: testing
+      #   emptyDir: {}
