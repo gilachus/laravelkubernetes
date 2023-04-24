@@ -21,12 +21,12 @@ docker-compose logs app
 
 # Kubernetes
 gcloud auth list
-gcloud config set project famous-vista-304216
+gcloud config set project <famous-vista-xxxxx>
 gcloud container clusters get-credentials cluster-1 --region=us-central1-c
 
 docker build -t laravel-k8s -f Dockerfile-k8s .
-docker tag laravel-k8s gcr.io/famous-vista-304216/laravel-k8s:latest
-docker push gcr.io/famous-vista-304216/laravel-k8s:latest
+docker tag laravel-k8s gcr.io/<famous-vista-xxxxx>/laravel-k8s:latest
+docker push gcr.io/<famous-vista-xxxxx>/laravel-k8s:latest
 
 kubectl apply -f zk8s/laravel-d.yaml
 kubectl apply -f zk8s/laravel-s.yaml
@@ -34,12 +34,12 @@ kubectl apply -f zk8s/laravel-i.yaml
 
 ---
 
-gcloud config set project valued-range-382821
+gcloud config set project <valued-range-xxxxx>
 gcloud container clusters get-credentials k8s-std-dprimero --region=us-central1-c
 
 docker build -t laravel-k8s -f Dockerfile-k8s .
-docker tag laravel-k8s gcr.io/valued-range-382821/laravel-k8s:latest
-docker push gcr.io/valued-range-382821/laravel-k8s:latest
+docker tag laravel-k8s gcr.io/<valued-range-xxxxx>laravel-k8s:latest
+docker push gcr.io/<valued-range-xxxxx>/laravel-k8s:latest
 
 kubectl apply -f zk8s/nginx-cm.yaml
 kubectl apply -f zk8s/laravel-pvc.yaml

@@ -16,7 +16,8 @@ use App\Http\Controllers\dashboard\EmailController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('redirect');
+    // return redirect('/places');
 });
 
 Route::get('/places', function () {

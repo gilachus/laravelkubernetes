@@ -27,9 +27,9 @@ spec:
       - name: laravel-app
         image: gcr.io/valued-range-382821/laravel-k8s:latest
         ports:
-        - containerPort: 9000
+        # - containerPort: 9000
         - containerPort: 80
-        volumeMounts:
+        # volumeMounts:
         # - name: logs
         #   mountPath: /var/www/storage/logs
         # - name: cache
@@ -56,14 +56,14 @@ spec:
             value: password
           - name: MYSQL_ROOT_PASSWORD
             value: password
-      volumes: 
-      - name: nginx-conf
-        configMap:
-          name: nginx-config
+      # volumes: 
+      # - name: nginx-conf
+      #   configMap:
+      #     name: nginx-config
       # - name: mysql-data
       #   emptyDir: {}
-      - name: log
-        emptyDir: {}
+      # - name: log
+      #   emptyDir: {}
       # - name: logs
       #   emptyDir: {}
       # - name: cache
