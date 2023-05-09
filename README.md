@@ -49,3 +49,26 @@ kubectl apply -f zk8s/laravel-i.yaml
 
 kubectl exec -it laravel-app-667c9fbc45-rwhzf -c laravel-app -- /bin/bash
 
+probar schedule solito
+dump de base de datos
+
+colocaremos la aplicación en modo mantenimiento y borramos las colas para tratar de evitar que se ejecuten tareas viejas que hayan sido resueltas por la nueva implementación
+
+**php artisan down**
+
+**php artisan queue:flush**
+
+**php artisan queue:clear redis**
+**php artisan queue:clear database**
+
+en caso de restablecer
+
+**php artisan up**
+
+export base de datos DUMP
+import base de datos RESTORE
+
+
+## Ejercicio test y laravel 10 style
+https://medium.com/@lukasz.lupa/how-your-controller-might-look-like-laravel-10-42f4f191cbc
+

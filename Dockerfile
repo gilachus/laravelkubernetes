@@ -31,5 +31,6 @@ COPY /zk8s/nginx/laravel-app.conf /etc/nginx/sites-available/default
 # Set working directory
 WORKDIR /var/www
 
-CMD ["/usr/bin/supervisord"]
+# CMD ["/usr/bin/supervisord"]
 # CMD [ "supervisord", "-c", "/etc/supervisor.conf" ]
+CMD ["zk8s/entrypoint.sh"]

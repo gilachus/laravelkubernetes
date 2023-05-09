@@ -1,22 +1,24 @@
 version: "3.8"
 services:
-  app:
-    build:
-      context: ./
-      dockerfile: Dockerfile
-    image: laravel-img
-    container_name: laravel-app
-    restart: unless-stopped
-    ports:
-      - 8000:80
-    working_dir: /var/www/
-    volumes:
-      - ./:/var/www
-    networks:
-      - laravel-net
+  # app:
+  #   build:
+  #     context: ./
+  #     dockerfile: Dockerfile
+  #   image: laravel-img
+  #   container_name: laravel-app
+  #   restart: unless-stopped
+  #   depends_on:
+  #     - db
+  #   ports:
+  #     - 8000:80
+  #   working_dir: /var/www/
+  #   volumes:
+  #     - ./:/var/www
+  #   networks:
+  #     - laravel-net
 
   db:
-    image: mysql:5.7
+    image: mysql:8.0.26
     container_name: laravel-db
     restart: unless-stopped
     ports:
@@ -30,6 +32,20 @@ services:
       - ./zk8s/mysql:/docker-entrypoint-initdb.d
     networks:
       - laravel-net
+    
+  # db-maria:
+  #   image: mariadb:10.5
+  #   container_name: laravel-db-maria
+  #   restart: unless-stopped
+  #   ports:
+  #     - 3307:3306
+  #   environment:
+  #     MYSQL_ROOT_PASSWORD: password
+  #     MYSQL_DATABASE: mydatabase
+  #     MYSQL_USER: user
+  #     MYSQL_PASSWORD: password
+  #   networks:
+  #     - laravel-net
 
   # nginx:
   #   image: nginx:1.17-alpine

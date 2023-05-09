@@ -12,7 +12,6 @@ spec:
       labels:
         app: laravel-app
     spec:
-      initContainers:
       containers:
       # - name: webserver
       #   image: nginx:latest
@@ -29,17 +28,20 @@ spec:
         ports:
         # - containerPort: 9000
         - containerPort: 80
-        # volumeMounts:
-        # - name: logs
-        #   mountPath: /var/www/storage/logs
-        # - name: cache
-        #   mountPath: /var/www/storage/framework/cache
-        # - name: sessions
-        #   mountPath: /var/www/storage/framework/sessions
-        # - name: views
-        #   mountPath: /var/www/storage/framework/views
-        # - name: testing
-        #   mountPath: /var/www/storage/framework/testing
+        volumeMounts:
+        - name: my-config-map
+          mountPath: /var/www/.env
+          subPath: .env
+        - name: logs
+          mountPath: /var/www/storage/logs
+        - name: cache
+          mountPath: /var/www/storage/framework/cache
+        - name: sessions
+          mountPath: /var/www/storage/framework/sessions
+        - name: views
+          mountPath: /var/www/storage/framework/views
+        - name: testing
+          mountPath: /var/www/storage/framework/testing
       - name: db
         image: mysql:5.7
         ports:
@@ -56,21 +58,21 @@ spec:
             value: password
           - name: MYSQL_ROOT_PASSWORD
             value: password
-      # volumes: 
+      volumes: 
       # - name: nginx-conf
       #   configMap:
       #     name: nginx-config
       # - name: mysql-data
       #   emptyDir: {}
-      # - name: log
-      #   emptyDir: {}
-      # - name: logs
-      #   emptyDir: {}
-      # - name: cache
-      #   emptyDir: {}
-      # - name: sessions
-      #   emptyDir: {}
-      # - name: views
-      #   emptyDir: {}
-      # - name: testing
-      #   emptyDir: {}
+      - name: log
+        emptyDir: {}
+      - name: logs
+        emptyDir: {}
+      - name: cache
+        emptyDir: {}
+      - name: sessions
+        emptyDir: {}
+      - name: views
+        emptyDir: {}
+      - name: testing
+        emptyDir: {}

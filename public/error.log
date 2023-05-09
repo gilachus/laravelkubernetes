@@ -1,0 +1,10 @@
+nginx: [warn] the "user" directive makes sense only if the master process runs with super-user privileges, ignored in /etc/nginx/nginx.conf:1
+nginx: [emerg] mkdir() "/var/lib/nginx/body" failed (13: Permission denied)
+nginx: [warn] the "user" directive makes sense only if the master process runs with super-user privileges, ignored in /etc/nginx/nginx.conf:1
+nginx: [emerg] mkdir() "/var/lib/nginx/body" failed (13: Permission denied)
+nginx: [warn] the "user" directive makes sense only if the master process runs with super-user privileges, ignored in /etc/nginx/nginx.conf:1
+nginx: [emerg] mkdir() "/var/lib/nginx/body" failed (13: Permission denied)
+nginx: [warn] the "user" directive makes sense only if the master process runs with super-user privileges, ignored in /etc/nginx/nginx.conf:1
+nginx: [emerg] mkdir() "/var/lib/nginx/body" failed (13: Permission denied)
+nginx: [warn] the "user" directive makes sense only if the master process runs with super-user privileges, ignored in /etc/nginx/nginx.conf:1
+nginx: [emerg] mkdir() "/var/lib/nginx/body" failed (13: Permission denied)
